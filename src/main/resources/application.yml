@@ -6,7 +6,7 @@ spring:
   application:
     name: jbot
   datasource:
-    url: ${db_url:jdbc:mysql://wangxuanzhi.top/test?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false}
+    url: ${db_url:jdbc:mysql://wangxuanzhi.top/demo?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false}
     username: ${db_username:root}
     password: ${db_password:123456}
     driver-class-name: com.mysql.jdbc.Driver
