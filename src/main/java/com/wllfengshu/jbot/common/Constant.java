@@ -15,7 +15,7 @@ public class Constant {
     /**
      * 目标项目临时存放路径
      */
-    public static final String TARGET_PROJECT_HOME = "/home/listen/Apps";
+    public static final String TARGET_PROJECT_HOME = "/Users/wangshuo/Desktop/未命名文件夹";
 
     /**
      * 模板文件目录名
