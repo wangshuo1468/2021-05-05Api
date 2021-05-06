@@ -1,30 +1,37 @@
-swagger:
-  title: NUAA_MSC
-  version: 1.0.0
-  name: Kitty
-
-
+server:
+  port: 8080
+  servlet:
+      context-path: /jbot/v2
 spring:
   application:
-    name: mybatis-curdc
+    name: jbot
   datasource:
-    url: jdbc:mysql://wangxuanzhi.top/nuaa_msc?characterEncoding=utf8&useLegacyDatetimeCode=false&serverTimezone=UTC
-    username: root
-    password: 123456
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    max-idle: 10
-    max-wait: 10000
-    min-idle: 5
+    url: ${db_url:jdbc:mysql://wangxuanzhi.top/test?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false}
+    username: ${db_username:root}
+    password: ${db_password:123456}
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  druid:
     initial-size: 5
-
-server:
-  port: 5000
-  address: 0.0.0.0
-
+    min-idle: 5
+    max-active: 20
+    max-wait: 60000
+    time-between-eviction-runs-millis: 60000
+    min-evictable-idle-time-millis: 300000
+    validation-query: SELECT 1
+    test-while-idle: true
+    test-on-borrow: false
+    test-on-return: false
+    pool-prepared-statements: true
+    max-pool-prepared-statement-per-connection-size: 20
+    filters: stat,wall,log4j
+    use-global-data-source-stat: true
+    connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: com.wllfengshu.jbot.model.po
   configuration:
     map-underscore-to-camel-case: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-    use-generated-keys: true
-    default-statement-timeout: 60
-    default-fetch-size: 100
+logging:
+  level:
+    com.wllfengshu.jbot.dao: debug
